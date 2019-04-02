@@ -1,0 +1,12 @@
+/****************************
+	School REportcard Generator
+	 Eta-network
+	 http://eta-network.com
+	 print.css
+   version 1.2
+******************************/
+
+#hiderow,#pdfprint,
+.delete,#nav,#nav2,footer,#openToc {
+  display: none;
+}

@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="en" > <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Report Card Generator</title>
+      <link rel="stylesheet" href="_static/css/bootstrap.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/datepicker.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/citheme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/multi-select.css" />
+      <link rel='stylesheet' type='text/css' href="_static/css/fontawesome/font-awesome.min.css" />
+      <link rel='stylesheet' type='text/css' href="_static/css/report.css" /> 
+      <link rel='stylesheet' type='text/css' href="_static/css/print.css" media="print"/>    
+  </head>
+<body class="wy-body-for-nav" role="document">
+  <div id="nav">
+    <div id="nav_inner" >
+      <!-- style="background:#fff;"> -->
+    <div id="pulldown-menu" class="ciNa" style="background:#fff;">
+    <div>
+       <!-- START DEFAULT DATATABLE -->
+      <div class="panel panel-default">
+          <div class="panel-heading">                                
+              <h3 class="panel-title">ALL REPORT SHEETS</h3>                               
+          </div>
+          <div class="panel-body">
+          <table class="table table-bordered table-striped" id="allreports">
+            <thead>
+                <tr>
+                    
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Score/Total</th>
+                    <th>Session</th>
+                    <th>Last Modify</th>
+                    <th>Term</th>
+                    <th>id</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr>
+                    <td>Tiger Nixon</td>
+                    <td>2</td>
+                    <td>612</td>
+                    <td>2014/2015</td>
+                    <td>2011/04/25</td>
+                    <td>1</td>
+                </tr>-->
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div> 
+    </div>
+  </div>
+<div id="nav2" style="">
+  <a  id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+  <div class="wy-grid-for-nav">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+          <div role="main" class="documen">
+              
+            <div id="page-wrap">
+              <div id="identity">
+                      <div id="logo">
+                        <div id="logoctr">
+                          <a href="javascript:;" id="change-logo" title="Change logo">Change Logo</a>
+                          <a href="javascript:;" id="save-logo" title="Save changes">Save</a>|
+                          <a href="javascript:;" id="delete-logo" title="Delete logo">Delete Logo</a>
+                          <a href="javascript:;" id="cancel-logo" title="Cancel changes">Cancel</a>
+                        </div>
+                        <div id="logohelp">
+                          <input id="imageloc" type="text" size="50" value="" /><br />
+                          (max width: 540px, max height: 100px)
+                        </div>
+                        <img id="image" src="img/log.png" alt="logo" />
+                      </div>
+                      <div id="schoolInfo">
+                        <textarea id="name">MULTIGRACE-GROUP OF SCHOOL</textarea>
+                        <textarea id="addres">123 Appleseed Street Appleville, WI 53719</textarea>
+                        <textarea id="phone">Tel:08108013285,08108013285,08108013285</textarea>
+                        <h3>SCHOOL REPORT SHEET</h3>
+                      </div>
+                     <div id="pdfprint">
+                        <button type="button" id="pdf">
+                         <i class="fa fa-file-text"></i> PDF  
+                        </button>
+                        <button type="button" id="print">
+                          <i class="fa fa-print"></i> PRINT 
+                        </button>
+                        <button type="button" id="delete">
+                          <i class="fa fa-trash-o"></i> DELETE
+                        </button>
+                        <button type="button" id="save">
+                          <i class="fa fa-save"></i> SAVE  
+                        </button>
+                        <button type="button"id="next">
+                          <i class="fa fa-arrow-circle-o-right"></i> NEXT
+                        </button>
+                      </div>
+              </div>
+              <div style="clear:both"></div>
+              <div id="" class="student">
+                <table id="studentInfo" class="tabled">
+                          <tr>
+                              <td class="meta-head">Name:</td>
+                              <td colspan="3"><textarea id="suname"></textarea></td>
+                              <td class="meta-head">Term:</td>
+                              <td id="st"><textarea id="sterm"></textarea>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="meta-head">Promotion/Class:</td>
+                              <td id="pcl"><textarea id="snewclass"></textarea></td>
+                              <td class="meta-head">No in class:</td>
+                              <td id="sic"><textarea id="sinclass"></textarea></td>
+                              <td class="meta-head">Postion:</td>
+                              <td><textarea id="pos"></textarea></td> 
+                          </tr>
+                          <tr>
+                            <td class="meta-head">Session:</td>
+                              <td id="ss"><textarea id="ssession"></textarea></td>
+                              <td class="meta-head" colspan="2">Next term Begin on:</td>
+                              <td colspan="2">
+                                <textarea id="sresumedate" class="datepicker" value="09/09/2016">
+                                </textarea>
+                              </td>
+                          </tr>
+                </table>
+                  </div>
+                  <div id="report">
+                    <table id="reportItems">
+                          <tr>
+                              <th>SUBJECT</th>
+                              <th>C.A Test(40)</th>
+                              <th>EXAM(60)</th>
+                              <th>TOTAL(100)</th>
+                              <th>POSITION</th>
+                              <th>REMARK</th>
+                          </tr>
+                      
+                          <tr id="hiderow">
+                            <td colspan="6">
+                              <a id="addrow" class="btn btn-default " data-toggle="modal" 
+                              href="#modal_no_footer" title="Add Subject">Add Subjects</a>
+                            </td>
+                          </tr>
+                          <tr>
+                              <td id="totalMarks">TOTAL MARKS </td>
+                              <td colspan="5" id="totalscore">0</td>
+                          </tr>
+                            <tr>
+                              <td id="percentage">PERCENTAGE</td>
+                              <td colspan="5" id="percent">0%</td>
+                          </tr>  
+                </table>
+                  </div>
+                  <div style="clear:both;"></div>
+                  <div id="moreInfo">
+                    <div id="extracurricular1">
+                        <table id="fre">
+                            <tr>
+                                <th>Frequency</th>
+                                <th>School Attendance</th>
+                            </tr>
+                            <tr>
+                                <td>No of Times School Open</td>
+                                <td><textarea id="sopendays" placeholder="112"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>No Of Times Present</td>
+                                <td><textarea id="presentdays" placeholder="110"></textarea></td>
+                            </tr>
+                             <tr>
+                                <td>No Of Times Absent</td>
+                                <td><textarea placeholder="2"></textarea></td>
+                            </tr>
+                        </table>
+                          <table>
+                            <tr>
+                                <th>PSYCHOMOTOR SKILL</th>
+                                <th>5</th>
+                                <th>4</th>
+                                <th>3</th>
+                                <th>2</th>
+                                <th>1</th>
+                            </tr>
+                            <tr>
+                      <td>Hand Writing</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input class="in" type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                            <tr>
+                      <td>Verbal Fluency</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Games</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Sports</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Handling Tools</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Drawing & Painting</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Musical Skills</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="extracurricular2"> 
+                        <table >
+                            <tr>
+                                <th>EFFECTIVE AREAS</th>
+                                <th>5</th>
+                                <th>4</th>
+                                <th>3</th>
+                                <th>2</th>
+                                <th>1</th>
+                            </tr>
+                            <tr>
+                      <td>Punctuality</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Neatness</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Politeness</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Honesty</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Coopreation with Others</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Leadership</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Helping Others</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Emotional Stability</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Health</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Attitude to School Work</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Attentiveness</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                             <tr>
+                      <td>Perseverance</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                            <tr>
+                      <td>Speaking/handwriting</td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                  </div>  
+            </div>    
+           <!-- <button type="button" class="c" id="test">test</button>-->
+          </div>
+          <footer>
+            <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+                
+            </div>
+          <hr/>
+          <div role="contentinfo">
+            <p>
+                &copy; Copyright  2016, EtaNetwork.
+             
+            </p>
+          </div>
+          For more <a href="http://eta-network.com"> Infomation </a> . 
+        </footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!--Add Subject Modal-->
+  <div class="modal" id="modal_no_footer" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                      <h4 class="modal-title" id="defModalHead">SELECT SUBJECT</h4>
+                  </div>
+                  <div class="modal-body">
+                      <form role="form" action="index.html" method="post">
+                        <div class="form-group">
+                          <div class="col-md-9 col-md-offset-2">                                    
+                            <select multiple="multiple" class="form-control multi-select" id="subj" 
+                            name="subjects">
+                                <option>English Language</option>
+                                <option>Mathematics</option>
+                                <option>Social Studies</option>
+                                <option>Home Economics</option>
+                                <option>Primary Science</option>
+                                <option>Intro Tech</option>
+                                <option>Intergrated Science</option>
+                                <option>Creative Art</option>
+                                <option>Computer Science</option>
+                                <option>Agric Science</option>
+                                <option>Poem</option>
+                                <option>Verbal Reasoning</option>
+                                <option>Quantitative Reasoning</option>
+                                <option>Writing</option>
+                                <option>C.R.K</option>
+                                <option>I.R.S</option>
+                            </select>
+                          </div>   
+                        </div>
+                        <button type="button" class="btn btn-default c" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-default c" style="float:right;">Save</button>
+                    </form>   
+                  </div>
+              </div>
+          </div>
+     </div>
+     <!--End Subject Modal-->
+    <script type="text/javascript" src="_static/jquery.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="_static/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery.multi-select.js"></script>
+    <script type="text/javascript" src="_static/js/jquery.quicksearch.js"></script>
+    <script type="text/javascript" src="_static/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="_static/js/toastr.js"></script>
+    <script type="text/javascript" src="_static/js/dexie.min.js"></script>
+
+    <script type="text/javascript" src="_static/plugin.js"></script>
+    <script type="text/javascript" src="_static/app.js"></script>
+</body>
+</html>
